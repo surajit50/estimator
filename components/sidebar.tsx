@@ -1,13 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { signOut, useSession } from "next-auth/react"
-import { BarChart, Building, FileText, Home, LogOut, Settings, Users, ChevronLeft, ChevronRight } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
+import {
+  BarChart,
+  Building,
+  FileText,
+  Home,
+  LogOut,
+  Settings,
+  Users,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sidebar,
   SidebarContent,
@@ -16,9 +26,9 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-} from "@/components/ui/sidebar"
-import { ModeToggle } from "@/components/mode-toggle"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "@/components/ui/sidebar";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const menuItems = [
   { icon: Home, label: "Dashboard", href: "/" },
@@ -27,12 +37,12 @@ const menuItems = [
   { icon: Users, label: "Clients", href: "/clients" },
   { icon: BarChart, label: "Reports", href: "/reports" },
   { icon: Settings, label: "Settings", href: "/settings" },
-]
+];
 
 export function AppSidebar() {
-  const pathname = usePathname()
-  const [open, setOpen] = useState(true)
-  const { data: session } = useSession()
+  const pathname = usePathname();
+  const [open, setOpen] = useState(true);
+  const { data: session } = useSession();
 
   return (
     <Sidebar open={open} onOpenChange={setOpen}>
@@ -52,7 +62,7 @@ export function AppSidebar() {
                     href={item.href}
                     className={cn(
                       "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",
-                      pathname === item.href && "bg-accent text-primary",
+                      pathname === item.href && "bg-accent text-primary"
                     )}
                   >
                     <item.icon className="h-4 w-4" />
@@ -73,7 +83,9 @@ export function AppSidebar() {
             </Avatar>
             <div>
               <p className="text-sm font-medium">{session.user.name}</p>
-              <p className="text-xs text-muted-foreground">{session.user.email}</p>
+              <p className="text-xs text-muted-foreground">
+                {session.user.email}
+              </p>
             </div>
           </div>
         )}
@@ -85,6 +97,5 @@ export function AppSidebar() {
         </div>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
-
