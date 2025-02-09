@@ -90,7 +90,6 @@ export function AppSidebar() {
           </div>
         )}
         <div className="flex items-center justify-between">
-          <ModeToggle />
           <Button variant="ghost" size="icon" onClick={() => signOut()}>
             <LogOut className="h-4 w-4" />
           </Button>
